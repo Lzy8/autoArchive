@@ -10,7 +10,7 @@ an autobuild ,archive ,and upload to pgyer server script for iOS write by python
 
 # Upload
 
-if you want to upload your ipa to pgyer.com , just write UKey and API_KEY in Python Scrpit Variable 'UKey' adn 'API_KEY'
+if you want to upload your ipa to pgyer.com , just write UKey and API_KEY in Python Scrpit Variable 'UKey' and 'API_KEY'
 
 # Usage
 
