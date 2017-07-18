@@ -1,10 +1,11 @@
 # autoArchive
-an autobuild ,archive ,and upload to pgyer server script for iOS write by python
+>An autobuild ,archive ,and upload to pgyer server script for iOS write by python
+>For more information,welcome to my personal tech blog (http://www.liuziyi.win)
 
 # Descprition
 
 - create a folder in your project, named testbuild 
-- put autobuild into that folder
+- put autobuild.py into that folder
 - put the exportOptions.plist into project
 - just workspace available , other types archive is developing...
 
