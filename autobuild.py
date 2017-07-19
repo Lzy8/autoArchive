@@ -4,8 +4,8 @@ import argparse
 import requests
 
 API_URL = "https://qiniu-storage.pgyer.com/apiv1/app/upload"
-UKey = ""
-API_KEY = ""
+UKey = "aa91cfbb99619dbb99a79a60ef61ba86"
+API_KEY = "de01fc6cbb5d02c954cf561e996658b9"
 DOWNLOAD_URL = "http://www.pgyer.com"
 
 def isUpload():
@@ -25,13 +25,13 @@ def parserJSON(responseObject):
 		print "Upload Fail!"
 		print "Reason:"+responseObject['message']	
 
-def uploadIPA(path):
+def uploadIPA(path,message):
 	print "zy_ipaPath:"+path
 	path = os.path.expanduser(path)
 	path = unicode(path,"utf-8")
 	file = {'file' : open(path,'rb')}
 	header = {'enctype' :'multipart/form-data'}
-	params = {'uKey':UKey,'_api_key':API_KEY,'installType':1,'password':'','updateDescription':'test bundle'}
+	params = {'uKey':UKey,'_api_key':API_KEY,'installType':1,'password':'','updateDescription':message}
 	print "U.P.L.O.A.D.I.N.G....PLEASE..WAIT"
 
 	result = requests.post(API_URL,data = params ,files = file, headers = header)
@@ -74,7 +74,7 @@ def getBuildArchivePath(archiveName):
 	archivePath = stdoutdata.strip() + "/" + archiveFullName
 	return archivePath
 
-def buildWorkspace(workspace,scheme):
+def buildWorkspace(workspace,scheme,message):
 	archivePath = getBuildArchivePath(scheme)
 	print "zy_archivePath:" + archivePath
 	archiveCmd = "xcodebuild -workspace %s -scheme %s -configuration Debug archive -archivePath %s -destination generic/platform=iOS" %(workspace,scheme,archivePath)
@@ -89,19 +89,20 @@ def buildWorkspace(workspace,scheme):
 		clearArchive(archivePath)
 		if isUpload():
 			ipaFullPath = ipaPath + '/' + scheme +'.ipa'
-			uploadIPA(ipaFullPath)
+			uploadIPA(ipaFullPath,message)
 	else:
 		print "zy_archive %s failed" %(workspace)
 		clearArchive(archivePath)
 
 def xcbuild(dictionary):
-	buildWorkspace(dictionary.workspace,dictionary.scheme)
+	buildWorkspace(dictionary.workspace,dictionary.scheme,dictionary.message)
 
 def main():
 
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-w','--workspace',help = 'input name of workspace needs to be built')
 	parser.add_argument('-s','--scheme',help = 'input name of scheme needs to be built')
+	parser.add_argument('-m','--message',help = 'message for build',default = 'archive')
 	hashMap = parser.parse_args()
 	xcbuild(hashMap)
 
