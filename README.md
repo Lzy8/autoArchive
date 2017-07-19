@@ -2,7 +2,7 @@
 >An autobuild ,archive ,and upload to pgyer server script for iOS write by python.
 For more information,welcome to my personal tech blog (http://www.liuziyi.win)
 
-![icon](http://www.liuziyi.win/wp-content/uploads/2017/06/Milky-Way-e1497964515420)
+![icon](http://www.liuziyi.win/wp-content/uploads/2017/06/Milky-Way-e1497964515420.jpg)
 
 # Descprition
 
